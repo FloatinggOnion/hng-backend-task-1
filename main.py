@@ -21,7 +21,7 @@ async def get_info(slack_name: str = Query(...), track: str = Query(...)):
     response = {
         'slack_name': slack_name,
         'current_day': current_day,
-        'utc_time': utc_time[:-1],
+        'utc_time': utc_time,
         'track': track,
         'github_file_url': github_file_url,
         'github_repo_url': github_repo_url,
