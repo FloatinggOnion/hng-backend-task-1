@@ -13,7 +13,7 @@ async def get_info(slack_name: str = Query(...), track: str = Query(...)):
     current_day = datetime.utcnow().strftime('%A')
 
     # Current time with +/-2 validation
-    utc_time = (datetime.utcnow() + timedelta(hours=2)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    utc_time = (datetime.utcnow() + timedelta(hours=2)).isoformat() + 'Z'
 
     github_file_url = f'https://github.com/FloatinggOnion/hng-backend-task-1/{os.path.basename(__file__)}'
     github_repo_url = 'https://github.com/FloatinggOnion/hng-backend-task-1'
