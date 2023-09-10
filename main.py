@@ -13,7 +13,7 @@ async def get_info(slack_name: str = Query(...), track: str = Query(...)):
     current_day = datetime.utcnow().strftime('%A')
 
     # Current time with +/-2 validation
-    utc_time = (datetime.utcnow() + timedelta(hours=2)).isoformat() + 'Z'
+    utc_time = (datetime.utcnow() + timedelta(hours=2)).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     github_file_url = f'https://github.com/FloatinggOnion/hng-backend-task-1/{os.path.basename(__file__)}'
     github_repo_url = 'https://github.com/FloatinggOnion/hng-backend-task-1'
@@ -21,7 +21,7 @@ async def get_info(slack_name: str = Query(...), track: str = Query(...)):
     response = {
         'slack_name': slack_name,
         'current_day': current_day,
-        'utc_time': utc_time[:-1],
+        'utc_time': utc_time,
         'track': track,
         'github_file_url': github_file_url,
         'github_repo_url': github_repo_url,
@@ -30,6 +30,3 @@ async def get_info(slack_name: str = Query(...), track: str = Query(...)):
 
     return response
 
-
-if __name__ == '__main__':
-    uvicorn.run(app, host='0.0.0.0', port=8000)
